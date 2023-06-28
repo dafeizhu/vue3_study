@@ -2,12 +2,12 @@
  * @Author: huangzc
  * @Date: 2023-06-28 09:37:48
  * @LastEditors: huangzc
- * @LastEditTime: 2023-06-28 09:52:25
+ * @LastEditTime: 2023-06-28 11:29:33
  * @Description: 
 -->
 <template>
   <div>
-    <h1>APP根组件</h1>
+    <h1>APP根组件2</h1>
   </div>
 </template>
 
