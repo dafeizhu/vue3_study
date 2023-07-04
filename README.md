@@ -1,16 +1,16 @@
-#                    硅谷甄选运营平台
+# 硅谷甄选运营平台
 
-此次教学课程为硅谷甄选运营平台项目,包含运营平台项目模板从0到1开发，以及数据大屏幕、权限等业务。
+此次教学课程为硅谷甄选运营平台项目,包含运营平台项目模板从 0 到 1 开发，以及数据大屏幕、权限等业务。
 
-此次教学课程涉及到技术栈包含***:vue3+TypeScript+vue-router+pinia+element-plus+axios+echarts***等技术栈。
+此次教学课程涉及到技术栈包含**_:vue3+TypeScript+vue-router+pinia+element-plus+axios+echarts_**等技术栈。
 
-## 一、vue3组件通信方式
+## 一、vue3 组件通信方式
 
 **通信仓库地址:https://gitee.com/jch1011/vue3_communication.git**
 
-不管是vue2还是vue3,组件通信方式很重要,不管是项目还是面试都是经常用到的知识点。
+不管是 vue2 还是 vue3,组件通信方式很重要,不管是项目还是面试都是经常用到的知识点。
 
-**比如:vue2组件通信方式**
+**比如:vue2 组件通信方式**
 
 **props:**可以实现父子组件、子父组件、甚至兄弟组件通信
 
@@ -22,13 +22,13 @@
 
 **vuex**:集中式状态管理容器，实现任意组件通信
 
-**ref**:父组件获取子组件实例VC,获取子组件的响应式数据以及方法
+**ref**:父组件获取子组件实例 VC,获取子组件的响应式数据以及方法
 
 **slot:**插槽(默认插槽、具名插槽、作用域插槽)实现父子组件通信........
 
 ### 1.1props
 
-props可以实现父子组件通信,在vue3中我们可以通过defineProps获取父组件传递的数据。且在组件内部不需要引入defineProps方法可以直接使用！
+props 可以实现父子组件通信,在 vue3 中我们可以通过 defineProps 获取父组件传递的数据。且在组件内部不需要引入 defineProps 方法可以直接使用！
 
 **父组件给子组件传递数据**
 
@@ -36,7 +36,7 @@ props可以实现父子组件通信,在vue3中我们可以通过defineProps获�
 <Child info="我爱祖国" :money="money"></Child>
 ```
 
-**子组件获取父组件传递数据:方式1**
+**子组件获取父组件传递数据:方式 1**
 
 ```
 let props = defineProps({
@@ -50,23 +50,23 @@ let props = defineProps({
 }})
 ```
 
-**子组件获取父组件传递数据:方式2**
+**子组件获取父组件传递数据:方式 2**
 
 ```
 let props = defineProps(["info",'money']);
 ```
 
-子组件获取到props数据就可以在模板中使用了,但是切记props是只读的(只能读取，不能修改)
+子组件获取到 props 数据就可以在模板中使用了,但是切记 props 是只读的(只能读取，不能修改)
 
-### 1.2自定义事件
+### 1.2 自定义事件
 
-在vue框架中事件分为两种:一种是原生的DOM事件，另外一种自定义事件。
+在 vue 框架中事件分为两种:一种是原生的 DOM 事件，另外一种自定义事件。
 
-原生DOM事件可以让用户与网页进行交互，比如click、dbclick、change、mouseenter、mouseleave....
+原生 DOM 事件可以让用户与网页进行交互，比如 click、dbclick、change、mouseenter、mouseleave....
 
 自定义事件可以实现子组件给父组件传递数据
 
-#### 1.2.1原生DOM事件
+#### 1.2.1 原生 DOM 事件
 
 代码如下:
 
@@ -76,18 +76,17 @@ let props = defineProps(["info",'money']);
  </pre>
 ```
 
-
-当前代码级给pre标签绑定原生DOM事件点击事件,默认会给事件回调注入event事件对象。当然点击事件想注入多个参数可以按照下图操作。但是切记注入的事件对象务必叫做$event.
+当前代码级给 pre 标签绑定原生 DOM 事件点击事件,默认会给事件回调注入 event 事件对象。当然点击事件想注入多个参数可以按照下图操作。但是切记注入的事件对象务必叫做$event.
 
 ```
   <div @click="handler1(1,2,3,$event)">我要传递多个参数</div>
 ```
 
-在vue3框架click、dbclick、change(这类原生DOM事件),不管是在标签、自定义标签上(组件标签)都是原生DOM事件。
+在 vue3 框架 click、dbclick、change(这类原生 DOM 事件),不管是在标签、自定义标签上(组件标签)都是原生 DOM 事件。
 
 **<!--vue2中却不是这样的,在vue2中组件标签需要通过native修饰符才能变为原生DOM事件-->**
 
-#### 1.2.2自定义事件
+#### 1.2.2 自定义事件
 
 自定义事件可以实现子组件给父组件传递数据.在项目中是比较常用的。
 
@@ -97,7 +96,7 @@ let props = defineProps(["info",'money']);
 <Event2  @xxx="handler3"></Event2>
 ```
 
-在Event2子组件内部触发这个自定义事件
+在 Event2 子组件内部触发这个自定义事件
 
 ```
 <template>
@@ -117,9 +116,9 @@ const handler = () => {
 </style>
 ```
 
-我们会发现在script标签内部,使用了defineEmits方法，此方法是vue3提供的方法,不需要引入直接使用。defineEmits方法执行，传递一个数组，数组元素即为将来组件需要触发的自定义事件类型，此方执行会返回一个$emit方法用于触发自定义事件。
+我们会发现在 script 标签内部,使用了 defineEmits 方法，此方法是 vue3 提供的方法,不需要引入直接使用。defineEmits 方法执行，传递一个数组，数组元素即为将来组件需要触发的自定义事件类型，此方执行会返回一个$emit 方法用于触发自定义事件。
 
-当点击按钮的时候，事件回调内部调用$emit方法去触发自定义事件,第一个参数为触发事件类型，第二个、三个、N个参数即为传递给父组件的数据。
+当点击按钮的时候，事件回调内部调用$emit 方法去触发自定义事件,第一个参数为触发事件类型，第二个、三个、N 个参数即为传递给父组件的数据。
 
 需要注意的是:代码如下
 
@@ -127,33 +126,31 @@ const handler = () => {
 <Event2  @xxx="handler3" @click="handler"></Event2>
 ```
 
-正常说组件标签书写@click应该为原生DOM事件,但是如果子组件内部通过defineEmits定义就变为自定义事件了
+正常说组件标签书写@click 应该为原生 DOM 事件,但是如果子组件内部通过 defineEmits 定义就变为自定义事件了
 
 ```
 let $emit = defineEmits(["xxx",'click']);
 ```
 
+### 1.3 全局事件总线
 
+全局事件总线可以实现任意组件通信，在 vue2 中可以根据 VM 与 VC 关系推出全局事件总线。
 
-### 1.3全局事件总线
+但是在 vue3 中没有 Vue 构造函数，也就没有 Vue.prototype.以及组合式 API 写法没有 this，
 
-全局事件总线可以实现任意组件通信，在vue2中可以根据VM与VC关系推出全局事件总线。
+那么在 Vue3 想实现全局事件的总线功能就有点不现实啦，如果想在 Vue3 中使用全局事件总线功能
 
-但是在vue3中没有Vue构造函数，也就没有Vue.prototype.以及组合式API写法没有this，
-
-那么在Vue3想实现全局事件的总线功能就有点不现实啦，如果想在Vue3中使用全局事件总线功能
-
-可以使用插件mitt实现。
+可以使用插件 mitt 实现。
 
 **mitt:官网地址:https://www.npmjs.com/package/mitt**
 
 ### 1.4v-model
 
-v-model指令可是收集表单数据(数据双向绑定)，除此之外它也可以实现父子组件数据同步。
+v-model 指令可是收集表单数据(数据双向绑定)，除此之外它也可以实现父子组件数据同步。
 
-而v-model实指利用props[modelValue]与自定义事件[update:modelValue]实现的。
+而 v-model 实指利用 props[modelValue]与自定义事件[update:modelValue]实现的。
 
-下方代码:相当于给组件Child传递一个props(modelValue)与绑定一个自定义事件update:modelValue
+下方代码:相当于给组件 Child 传递一个 props(modelValue)与绑定一个自定义事件 update:modelValue
 
 实现父子组件数据同步
 
@@ -161,25 +158,23 @@ v-model指令可是收集表单数据(数据双向绑定)，除此之外它也�
 <Child v-model="msg"></Child>
 ```
 
-在vue3中一个组件可以通过使用多个v-model,让父子组件多个数据同步,下方代码相当于给组件Child传递两个props分别是pageNo与pageSize，以及绑定两个自定义事件update:pageNo与update:pageSize实现父子数据同步
+在 vue3 中一个组件可以通过使用多个 v-model,让父子组件多个数据同步,下方代码相当于给组件 Child 传递两个 props 分别是 pageNo 与 pageSize，以及绑定两个自定义事件 update:pageNo 与 update:pageSize 实现父子数据同步
 
 ```
 <Child v-model:pageNo="msg" v-model:pageSize="msg1"></Child>
 ```
 
-
-
 ### 1.5useAttrs
 
-在Vue3中可以利用useAttrs方法获取组件的属性与事件(包含:原生DOM事件或者自定义事件),次函数功能类似于Vue2框架中$attrs属性与$listeners方法。
+在 Vue3 中可以利用 useAttrs 方法获取组件的属性与事件(包含:原生 DOM 事件或者自定义事件),次函数功能类似于 Vue2 框架中$attrs属性与$listeners 方法。
 
-比如:在父组件内部使用一个子组件my-button
+比如:在父组件内部使用一个子组件 my-button
 
 ```
 <my-button type="success" size="small" title='标题' @click="handler"></my-button>
 ```
 
-子组件内部可以通过useAttrs方法获取组件属性与事件.因此你也发现了，它类似于props,可以接受父组件传递过来的属性与属性值。需要注意如果defineProps接受了某一个属性，useAttrs方法返回的对象身上就没有相应属性与属性值。
+子组件内部可以通过 useAttrs 方法获取组件属性与事件.因此你也发现了，它类似于 props,可以接受父组件传递过来的属性与属性值。需要注意如果 defineProps 接受了某一个属性，useAttrs 方法返回的对象身上就没有相应属性与属性值。
 
 ```
 <script setup lang="ts">
@@ -188,13 +183,9 @@ let $attrs = useAttrs();
 </script>
 ```
 
+### 1.6ref 与$parent
 
-
-### 1.6ref与$parent
-
-
-
-ref,提及到ref可能会想到它可以获取元素的DOM或者获取子组件实例的VC。既然可以在父组件内部通过ref获取子组件实例VC，那么子组件内部的方法与响应式数据父组件可以使用的。
+ref,提及到 ref 可能会想到它可以获取元素的 DOM 或者获取子组件实例的 VC。既然可以在父组件内部通过 ref 获取子组件实例 VC，那么子组件内部的方法与响应式数据父组件可以使用的。
 
 比如:在父组件挂载完毕获取组件实例
 
@@ -217,7 +208,7 @@ onMounted(() => {
 </script>
 ```
 
-但是需要注意，如果想让父组件获取子组件的数据或者方法需要通过defineExpose对外暴露,因为vue3中组件内部的数据对外“关闭的”，外部不能访问
+但是需要注意，如果想让父组件获取子组件的数据或者方法需要通过 defineExpose 对外暴露,因为 vue3 中组件内部的数据对外“关闭的”，外部不能访问
 
 ```
 <script setup lang="ts">
@@ -234,23 +225,23 @@ defineExpose({
 </script>
 ```
 
-$parent可以获取某一个组件的父组件实例VC,因此可以使用父组件内部的数据与方法。必须子组件内部拥有一个按钮点击时候获取父组件实例，当然父组件的数据与方法需要通过defineExpose方法对外暴露
+$parent 可以获取某一个组件的父组件实例 VC,因此可以使用父组件内部的数据与方法。必须子组件内部拥有一个按钮点击时候获取父组件实例，当然父组件的数据与方法需要通过 defineExpose 方法对外暴露
 
 ```
 <button @click="handler($parent)">点击我获取父组件实例</button>
 ```
 
-### 1.7provide与inject
+### 1.7provide 与 inject
 
 **provide[提供]**
 
 **inject[注入]**
 
-vue3提供两个方法provide与inject,可以实现隔辈组件传递参数
+vue3 提供两个方法 provide 与 inject,可以实现隔辈组件传递参数
 
 组件组件提供数据:
 
-provide方法用于提供数据，此方法执需要传递两个参数,分别提供数据的key与提供数据value
+provide 方法用于提供数据，此方法执需要传递两个参数,分别提供数据的 key 与提供数据 value
 
 ```
 <script setup lang="ts">
@@ -259,7 +250,7 @@ provide('token','admin_token');
 </script>
 ```
 
-后代组件可以通过inject方法获取数据,通过key获取存储的数值
+后代组件可以通过 inject 方法获取数据,通过 key 获取存储的数值
 
 ```
 <script setup lang="ts">
@@ -270,9 +261,9 @@ let token = inject('token');
 
 ### 1.8pinia
 
-**pinia官网:https://pinia.web3doc.top/**
+**pinia 官网:https://pinia.web3doc.top/**
 
-pinia也是集中式管理状态容器,类似于vuex。但是核心概念没有mutation、modules,使用方式参照官网
+pinia 也是集中式管理状态容器,类似于 vuex。但是核心概念没有 mutation、modules,使用方式参照官网
 
 ### 1.9slot
 
@@ -280,7 +271,7 @@ pinia也是集中式管理状态容器,类似于vuex。但是核心概念没有m
 
 **默认插槽:**
 
-在子组件内部的模板中书写slot全局组件标签
+在子组件内部的模板中书写 slot 全局组件标签
 
 ```
 <template>
@@ -294,7 +285,7 @@ pinia也是集中式管理状态容器,类似于vuex。但是核心概念没有m
 </style>
 ```
 
-在父组件内部提供结构：Todo即为子组件,在父组件内部使用的时候，在双标签内部书写结构传递给子组件
+在父组件内部提供结构：Todo 即为子组件,在父组件内部使用的时候，在双标签内部书写结构传递给子组件
 
 注意开发项目的时候默认插槽一般只有一个
 
@@ -325,7 +316,7 @@ pinia也是集中式管理状态容器,类似于vuex。但是核心概念没有m
 </style>
 ```
 
-父组件内部向指定的具名插槽传递结构。需要注意v-slot：可以替换为#
+父组件内部向指定的具名插槽传递结构。需要注意 v-slot：可以替换为#
 
 ```
 <template>
@@ -353,7 +344,7 @@ import Todo from "./Todo.vue";
 
 作用域插槽：可以理解为，子组件数据由父组件提供，但是子组件内部决定不了自身结构与外观(样式)
 
-子组件Todo代码如下:
+子组件 Todo 代码如下:
 
 ```
 <template>
@@ -406,24 +397,24 @@ let todos = ref([
 
 ## 二、搭建后台管理系统模板
 
-### 2.1项目初始化
+### 2.1 项目初始化
 
-今天来带大家从0开始搭建一个vue3版本的后台管理系统。一个项目要有统一的规范，需要使用eslint+stylelint+prettier来对我们的代码质量做检测和修复，需要使用husky来做commit拦截，需要使用commitlint来统一提交规范，需要使用preinstall来统一包管理工具。
+今天来带大家从 0 开始搭建一个 vue3 版本的后台管理系统。一个项目要有统一的规范，需要使用 eslint+stylelint+prettier 来对我们的代码质量做检测和修复，需要使用 husky 来做 commit 拦截，需要使用 commitlint 来统一提交规范，需要使用 preinstall 来统一包管理工具。
 
 下面我们就用这一套规范来初始化我们的项目，集成一个规范的模版。
 
-#### 2.1.1环境准备
+#### 2.1.1 环境准备
 
-- node v16.14.2 
+- node v16.14.2
 - pnpm 8.0.0
 
-#### 2.1.2初始化项目
+#### 2.1.2 初始化项目
 
-本项目使用vite进行构建，vite官方中文文档参考：[cn.vitejs.dev/guide/](https://cn.vitejs.dev/guide/)
+本项目使用 vite 进行构建，vite 官方中文文档参考：[cn.vitejs.dev/guide/](https://cn.vitejs.dev/guide/)
 
-**pnpm:performant npm ，意味“高性能的 npm”。[pnpm](https://so.csdn.net/so/search?q=pnpm&spm=1001.2101.3001.7020)由npm/yarn衍生而来，解决了npm/yarn内部潜在的bug，极大的优化了性能，扩展了使用场景。被誉为“最先进的包管理工具”**
+**pnpm:performant npm ，意味“高性能的 npm”。[pnpm](https://so.csdn.net/so/search?q=pnpm&spm=1001.2101.3001.7020)由 npm/yarn 衍生而来，解决了 npm/yarn 内部潜在的 bug，极大的优化了性能，扩展了使用场景。被誉为“最先进的包管理工具”**
 
-pnpm安装指令
+pnpm 安装指令
 
 ```
 npm i -g pnpm
@@ -435,19 +426,19 @@ npm i -g pnpm
 pnpm create vite
 ```
 
-进入到项目根目录pnpm install安装全部依赖.安装完依赖运行程序:pnpm run dev
+进入到项目根目录 pnpm install 安装全部依赖.安装完依赖运行程序:pnpm run dev
 
 运行完毕项目跑在http://127.0.0.1:5173/,可以访问你得项目啦
 
-### 2.2项目配置
+### 2.2 项目配置
 
-#### 一、eslint配置
+#### 一、eslint 配置
 
-**eslint中文官网:http://eslint.cn/**
+**eslint 中文官网:http://eslint.cn/**
 
-ESLint最初是由[Nicholas C. Zakas](http://nczonline.net/) 于2013年6月创建的开源项目。它的目标是提供一个插件化的**javascript代码检测工具**
+ESLint 最初是由[Nicholas C. Zakas](http://nczonline.net/) 于 2013 年 6 月创建的开源项目。它的目标是提供一个插件化的**javascript 代码检测工具**
 
-首先安装eslint
+首先安装 eslint
 
 ```
 pnpm i eslint -D
@@ -459,17 +450,17 @@ pnpm i eslint -D
 npx eslint --init
 ```
 
-**.eslint.cjs配置文件**
+**.eslint.cjs 配置文件**
 
 ```
 module.exports = {
    //运行环境
-    "env": { 
+    "env": {
         "browser": true,//浏览器端
         "es2021": true,//es2021
     },
     //规则继承
-    "extends": [ 
+    "extends": [
        //全部规则默认是关闭的,这个配置项开启推荐规则,推荐规则参照文档
        //比如:函数不能重名、对象不能出现重复key
         "eslint:recommended",
@@ -503,7 +494,7 @@ module.exports = {
 }
 ```
 
-##### 1.1vue3环境代码校验插件
+##### 1.1vue3 环境代码校验插件
 
 ```
 # 让所有与prettier规则存在冲突的Eslint rules失效，并使用prettier进行代码检查
@@ -524,7 +515,7 @@ module.exports = {
 pnpm install -D eslint-plugin-import eslint-plugin-vue eslint-plugin-node eslint-plugin-prettier eslint-config-prettier eslint-plugin-node @babel/eslint-parser
 ```
 
-##### 1.2修改.eslintrc.cjs配置文件
+##### 1.2 修改.eslintrc.cjs 配置文件
 
 ```
 // @see https://eslint.bootcss.com/docs/rules/
@@ -588,16 +579,16 @@ module.exports = {
 
 ```
 
-##### 1.3.eslintignore忽略文件
+##### 1.3.eslintignore 忽略文件
 
 ```
 dist
 node_modules
 ```
 
-##### 1.4运行脚本
+##### 1.4 运行脚本
 
-package.json新增两个运行脚本
+package.json 新增两个运行脚本
 
 ```
 "scripts": {
@@ -608,21 +599,21 @@ package.json新增两个运行脚本
 
 #### 二、配置**prettier**
 
-有了eslint，为什么还要有prettier？eslint针对的是javascript，他是一个检测工具，包含js语法以及少部分格式问题，在eslint看来，语法对了就能保证代码正常运行，格式问题属于其次；
+有了 eslint，为什么还要有 prettier？eslint 针对的是 javascript，他是一个检测工具，包含 js 语法以及少部分格式问题，在 eslint 看来，语法对了就能保证代码正常运行，格式问题属于其次；
 
-而prettier属于格式化工具，它看不惯格式不统一，所以它就把eslint没干好的事接着干，另外，prettier支持
+而 prettier 属于格式化工具，它看不惯格式不统一，所以它就把 eslint 没干好的事接着干，另外，prettier 支持
 
-包含js在内的多种语言。
+包含 js 在内的多种语言。
 
-总结起来，**eslint和prettier这俩兄弟一个保证js代码质量，一个保证代码美观。**
+总结起来，**eslint 和 prettier 这俩兄弟一个保证 js 代码质量，一个保证代码美观。**
 
-##### 2.1安装依赖包
+##### 2.1 安装依赖包
 
 ```
 pnpm install -D eslint-plugin-prettier prettier eslint-config-prettier
 ```
 
-##### 2.2.prettierrc.json添加规则
+##### 2.2.prettierrc.json 添加规则
 
 ```
 {
@@ -636,7 +627,7 @@ pnpm install -D eslint-plugin-prettier prettier eslint-config-prettier
 }
 ```
 
-##### 2.3.prettierignore忽略文件
+##### 2.3.prettierignore 忽略文件
 
 ```
 /dist/*
@@ -648,13 +639,13 @@ pnpm install -D eslint-plugin-prettier prettier eslint-config-prettier
 /public/*
 ```
 
-**通过pnpm run lint去检测语法，如果出现不规范格式,通过pnpm run fix 修改**
+**通过 pnpm run lint 去检测语法，如果出现不规范格式,通过 pnpm run fix 修改**
 
-#### 三、配置stylelint
+#### 三、配置 stylelint
 
-[stylelint](https://stylelint.io/)为css的lint工具。可格式化css代码，检查css语法错误与不合理的写法，指定css书写顺序等。
+[stylelint](https://stylelint.io/)为 css 的 lint 工具。可格式化 css 代码，检查 css 语法错误与不合理的写法，指定 css 书写顺序等。
 
-我们的项目中使用scss作为预处理器，安装以下依赖：
+我们的项目中使用 scss 作为预处理器，安装以下依赖：
 
 ```
 pnpm add sass sass-loader stylelint postcss postcss-scss postcss-html stylelint-config-prettier stylelint-config-recess-order stylelint-config-recommended-scss stylelint-config-standard stylelint-config-standard-vue stylelint-scss stylelint-order stylelint-config-standard-scss -D
@@ -720,7 +711,7 @@ module.exports = {
 }
 ```
 
-##### 3.2.stylelintignore忽略文件
+##### 3.2.stylelintignore 忽略文件
 
 ```
 /node_modules/*
@@ -729,7 +720,7 @@ module.exports = {
 /public/*
 ```
 
-##### 3.3运行脚本
+##### 3.3 运行脚本
 
 ```
 "scripts": {
@@ -737,7 +728,7 @@ module.exports = {
 }
 ```
 
-最后配置统一的prettier来格式化我们的js和css，html代码
+最后配置统一的 prettier 来格式化我们的 js 和 css，html 代码
 
 ```
  "scripts": {
@@ -754,11 +745,11 @@ module.exports = {
 
 **当我们运行`pnpm run format`的时候，会把代码直接格式化**
 
-#### 四、配置husky
+#### 四、配置 husky
 
 在上面我们已经集成好了我们代码校验工具，但是需要每次手动的去执行命令才会格式化我们的代码。如果有人没有格式化就提交了远程仓库中，那这个规范就没什么用。所以我们需要强制让开发人员按照代码规范来提交。
 
-要做到这件事情，就需要利用husky在代码提交之前触发git hook(git在客户端的钩子)，然后执行`pnpm run format`来自动的格式化我们的代码。
+要做到这件事情，就需要利用 husky 在代码提交之前触发 git hook(git 在客户端的钩子)，然后执行`pnpm run format`来自动的格式化我们的代码。
 
 安装`husky`
 
@@ -772,7 +763,7 @@ pnpm install -D husky
 npx husky-init
 ```
 
-会在根目录下生成个一个.husky目录，在这个目录下面会有一个pre-commit文件，这个文件里面的命令在我们执行commit的时候就会执行
+会在根目录下生成个一个.husky 目录，在这个目录下面会有一个 pre-commit 文件，这个文件里面的命令在我们执行 commit 的时候就会执行
 
 在`.husky/pre-commit`文件添加如下命令：
 
@@ -782,11 +773,11 @@ npx husky-init
 pnpm run format
 ```
 
-当我们对代码进行commit操作的时候，就会执行命令，对代码进行格式化，然后再提交。
+当我们对代码进行 commit 操作的时候，就会执行命令，对代码进行格式化，然后再提交。
 
-#### 五、配置commitlint
+#### 五、配置 commitlint
 
-对于我们的commit信息，也是有统一规范的，不能随便写,要让每个人都按照统一的标准来执行，我们可以利用**commitlint**来实现。
+对于我们的 commit 信息，也是有统一规范的，不能随便写,要让每个人都按照统一的标准来执行，我们可以利用**commitlint**来实现。
 
 安装包
 
@@ -794,7 +785,7 @@ pnpm run format
 pnpm add @commitlint/config-conventional @commitlint/cli -D
 ```
 
-添加配置文件，新建`commitlint.config.cjs`(注意是cjs)，然后添加下面的代码：
+添加配置文件，新建`commitlint.config.cjs`(注意是 cjs)，然后添加下面的代码：
 
 ```
 module.exports = {
@@ -828,7 +819,7 @@ module.exports = {
 }
 ```
 
-在`package.json`中配置scripts命令
+在`package.json`中配置 scripts 命令
 
 ```
 # 在scrips中添加下面的代码
@@ -854,13 +845,13 @@ module.exports = {
 'build',//编译相关的修改，例如发布版本、对项目构建或者依赖的改动
 ```
 
-配置husky
+配置 husky
 
 ```
-npx husky add .husky/commit-msg 
+npx husky add .husky/commit-msg
 ```
 
-在生成的commit-msg文件中添加下面的命令
+在生成的 commit-msg 文件中添加下面的命令
 
 ```
 #!/usr/bin/env sh
@@ -870,11 +861,11 @@ pnpm commitlint
 
 当我们 commit 提交信息时，就不能再随意写了，必须是 git commit -m 'fix: xxx' 符合类型的才可以，**需要注意的是类型的后面需要用英文的 :，并且冒号后面是需要空一格的，这个是不能省略的**
 
-#### 六、强制使用pnpm包管理器工具
+#### 六、强制使用 pnpm 包管理器工具
 
 团队开发项目的时候，需要统一包管理器工具,因为不同包管理器工具下载同一个依赖,可能版本不一样,
 
-导致项目出现bug问题,因此包管理器工具需要统一管理！！！
+导致项目出现 bug 问题,因此包管理器工具需要统一管理！！！
 
 在根目录创建`scritps/preinstall.js`文件，添加下面的内容
 
@@ -896,13 +887,13 @@ if (!/pnpm/.test(process.env.npm_execpath || '')) {
 }
 ```
 
-**当我们使用npm或者yarn来安装包的时候，就会报错了。原理就是在install的时候会触发preinstall（npm提供的生命周期钩子）这个文件里面的代码。**
+**当我们使用 npm 或者 yarn 来安装包的时候，就会报错了。原理就是在 install 的时候会触发 preinstall（npm 提供的生命周期钩子）这个文件里面的代码。**
 
 ## 三、项目集成
 
-### 3.1集成element-plus
+### 3.1 集成 element-plus
 
-硅谷甄选运营平台,UI组件库采用的element-plus，因此需要集成element-plus插件！！！
+硅谷甄选运营平台,UI 组件库采用的 element-plus，因此需要集成 element-plus 插件！！！
 
 官网地址:https://element-plus.gitee.io/zh-CN/
 
@@ -910,7 +901,7 @@ if (!/pnpm/.test(process.env.npm_execpath || '')) {
 pnpm install element-plus @element-plus/icons-vue
 ```
 
-**入口文件main.ts全局安装element-plus,element-plus默认支持语言英语设置为中文**
+**入口文件 main.ts 全局安装 element-plus,element-plus 默认支持语言英语设置为中文**
 
 ```
 import ElementPlus from 'element-plus';
@@ -922,9 +913,7 @@ app.use(ElementPlus, {
 })
 ```
 
-
-
-**Element Plus全局组件类型声明**
+**Element Plus 全局组件类型声明**
 
 ```
 // tsconfig.json
@@ -936,11 +925,11 @@ app.use(ElementPlus, {
 }
 ```
 
-配置完毕可以测试element-plus组件与图标的使用.
+配置完毕可以测试 element-plus 组件与图标的使用.
 
-### 3.2src别名的配置
+### 3.2src 别名的配置
 
-在开发项目的时候文件与文件关系可能很复杂，因此我们需要给src文件夹配置一个别名！！！
+在开发项目的时候文件与文件关系可能很复杂，因此我们需要给 src 文件夹配置一个别名！！！
 
 ```
 // vite.config.ts
@@ -965,18 +954,18 @@ export default defineConfig({
   "compilerOptions": {
     "baseUrl": "./", // 解析非相对模块的基地址，默认是当前目录
     "paths": { //路径映射，相对于baseUrl
-      "@/*": ["src/*"] 
+      "@/*": ["src/*"]
     }
   }
 }
 ```
 
-### 3.3环境变量的配置
+### 3.3 环境变量的配置
 
 **项目开发过程中，至少会经历开发环境、测试环境和生产环境(即正式环境)三个阶段。不同阶段请求的状态(如接口地址等)不尽相同，若手动切换接口地址是相当繁琐且易出错的。于是环境变量配置的需求就应运而生，我们只需做简单的配置，把环境状态切换的工作交给代码。**
 
 开发环境（development）
-顾名思义，开发使用的环境，每位开发人员在自己的dev分支上干活，开发到一定程度，同事会合并代码，进行联调。
+顾名思义，开发使用的环境，每位开发人员在自己的 dev 分支上干活，开发到一定程度，同事会合并代码，进行联调。
 
 测试环境（testing）
 测试同事干活的环境啦，一般会由测试同事自己来部署，然后在此环境进行测试
@@ -1027,15 +1016,15 @@ VITE_APP_BASE_API = '/test-api'
   },
 ```
 
-通过import.meta.env获取环境变量
+通过 import.meta.env 获取环境变量
 
-### 3.4SVG图标配置
+### 3.4SVG 图标配置
 
-在开发项目的时候经常会用到svg矢量图,而且我们使用SVG以后，页面上加载的不再是图片资源,
+在开发项目的时候经常会用到 svg 矢量图,而且我们使用 SVG 以后，页面上加载的不再是图片资源,
 
-这对页面性能来说是个很大的提升，而且我们SVG文件比img要小的很多，放在项目中几乎不占用资源。
+这对页面性能来说是个很大的提升，而且我们 SVG 文件比 img 要小的很多，放在项目中几乎不占用资源。
 
-**安装SVG依赖插件**
+**安装 SVG 依赖插件**
 
 ```
 pnpm install vite-plugin-svg-icons -D
@@ -1066,11 +1055,11 @@ export default () => {
 import 'virtual:svg-icons-register'
 ```
 
-#### 3.4.1svg封装为全局组件
+#### 3.4.1svg 封装为全局组件
 
 因为项目很多模块需要使用图标,因此把它封装为全局组件！！！
 
-**在src/components目录下创建一个SvgIcon组件:代表如下**
+**在 src/components 目录下创建一个 SvgIcon 组件:代表如下**
 
 ```
 <template>
@@ -1111,7 +1100,7 @@ defineProps({
 <style scoped></style>
 ```
 
-在src文件夹目录下创建一个index.ts文件：用于注册components文件夹内部全部全局组件！！！
+在 src 文件夹目录下创建一个 index.ts 文件：用于注册 components 文件夹内部全部全局组件！！！
 
 ```
 import SvgIcon from './SvgIcon/index.vue';
@@ -1126,16 +1115,16 @@ export default {
 }
 ```
 
-在入口文件引入src/index.ts文件,通过app.use方法安装自定义插件
+在入口文件引入 src/index.ts 文件,通过 app.use 方法安装自定义插件
 
 ```
 import gloablComponent from './components/index';
 app.use(gloablComponent);
 ```
 
-### 3.5集成sass
+### 3.5 集成 sass
 
-我们目前在组件内部已经可以使用scss样式,因为在配置styleLint工具的时候，项目当中已经安装过sass sass-loader,因此我们再组件内可以使用scss语法！！！需要加上lang="scss"
+我们目前在组件内部已经可以使用 scss 样式,因为在配置 styleLint 工具的时候，项目当中已经安装过 sass sass-loader,因此我们再组件内可以使用 scss 语法！！！需要加上 lang="scss"
 
 ```
 <style scoped lang="scss"></style>
@@ -1143,7 +1132,7 @@ app.use(gloablComponent);
 
 接下来我们为项目添加一些全局的样式
 
-在src/styles目录下创建一个index.scss文件，当然项目中需要用到清除默认样式，因此在index.scss引入reset.scss
+在 src/styles 目录下创建一个 index.scss 文件，当然项目中需要用到清除默认样式，因此在 index.scss 引入 reset.scss
 
 ```
 @import reset.scss
@@ -1155,11 +1144,11 @@ app.use(gloablComponent);
 import '@/styles'
 ```
 
-但是你会发现在src/styles/index.scss全局样式文件中没有办法使用$变量.因此需要给项目中引入全局变量$.
+但是你会发现在 src/styles/index.scss 全局样式文件中没有办法使用$变量.因此需要给项目中引入全局变量$.
 
-在style/variable.scss创建一个variable.scss文件！
+在 style/variable.scss 创建一个 variable.scss 文件！
 
-在vite.config.ts文件配置如下:
+在 vite.config.ts 文件配置如下:
 
 ```
 export default defineConfig((config) => {
@@ -1177,9 +1166,9 @@ export default defineConfig((config) => {
 
 **`@import "./src/styles/variable.less";`后面的`;`不要忘记，不然会报错**!
 
-配置完毕你会发现scss提供这些全局变量可以在组件样式中使用了！！！
+配置完毕你会发现 scss 提供这些全局变量可以在组件样式中使用了！！！
 
-### 3.6mock数据
+### 3.6mock 数据
 
 安装依赖:https://www.npmjs.com/package/vite-plugin-mock
 
@@ -1205,9 +1194,9 @@ export default ({ command })=> {
 }
 ```
 
-在根目录创建mock文件夹:去创建我们需要mock数据与接口！！！
+在根目录创建 mock 文件夹:去创建我们需要 mock 数据与接口！！！
 
-在mock文件夹内部创建一个user.ts文件
+在 mock 文件夹内部创建一个 user.ts 文件
 
 ```
 //用户信息数据
@@ -1281,27 +1270,27 @@ export default [
 ]
 ```
 
-**安装axios**
+**安装 axios**
 
 ```
 pnpm install axios
 ```
 
-最后通过axios测试接口！！！
+最后通过 axios 测试接口！！！
 
-### 3.7axios二次封装
+### 3.7axios 二次封装
 
-在开发项目的时候避免不了与后端进行交互,因此我们需要使用axios插件实现发送网络请求。在开发项目的时候
+在开发项目的时候避免不了与后端进行交互,因此我们需要使用 axios 插件实现发送网络请求。在开发项目的时候
 
-我们经常会把axios进行二次封装。
+我们经常会把 axios 进行二次封装。
 
 目的:
 
 1:使用请求拦截器，可以在请求拦截器中处理一些业务(开始进度条、请求头携带公共参数)
 
-2:使用响应拦截器，可以在响应拦截器中处理一些业务(进度条结束、简化服务器返回的数据、处理http网络错误)
+2:使用响应拦截器，可以在响应拦截器中处理一些业务(进度条结束、简化服务器返回的数据、处理 http 网络错误)
 
-在根目录下创建utils/request.ts
+在根目录下创建 utils/request.ts
 
 ```
 import axios from "axios";
@@ -1348,9 +1337,9 @@ request.interceptors.response.use((response) => {
 export default request;
 ```
 
-### 3.8API接口统一管理
+### 3.8API 接口统一管理
 
-在开发项目的时候,接口可能很多需要统一管理。在src目录下去创建api文件夹去统一管理项目的接口；
+在开发项目的时候,接口可能很多需要统一管理。在 src 目录下去创建 api 文件夹去统一管理项目的接口；
 
 比如:下面方式
 
@@ -1402,7 +1391,7 @@ export const reqLogout = () => request.post<any, any>(API.LOGOUT_URL)
 
 服务器域名:http://sph-api.atguigu.cn
 
-swagger文档:
+swagger 文档:
 
 http://139.198.104.58:8209/swagger-ui.html
 
@@ -1413,4 +1402,3 @@ echarts:国内镜像网站
 https://www.isqqw.com/echarts-doc/zh/option.html#title
 
 http://datav.aliyun.com/portal/school/atlas/area_selector
-
