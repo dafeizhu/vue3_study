@@ -867,7 +867,7 @@ pnpm commitlint
 
 导致项目出现 bug 问题,因此包管理器工具需要统一管理！！！
 
-在根目录创建`scritps/preinstall.js`文件，添加下面的内容
+在根目录创建`scripts/preinstall.js`文件，添加下面的内容
 
 ```
 if (!/pnpm/.test(process.env.npm_execpath || '')) {
