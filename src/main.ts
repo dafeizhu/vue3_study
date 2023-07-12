@@ -10,11 +10,12 @@ import globalComponent from '@/components'
 import '@/styles/index.scss'
 //引入路由
 import router from './router'
-
+import pinia from './store'
 const app = createApp(App)
 app.use(ElementPlus, {
-  locale: zhCn
+    locale: zhCn
 })
-app.use(globalComponent)
-app.use(router)
-app.mount('#app')
+    .use(globalComponent)
+    .use(router)
+    .use(pinia)
+    .mount('#app')
