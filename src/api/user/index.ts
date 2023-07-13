@@ -5,10 +5,9 @@ enum API {
     USERINFO_URL = '/user/info'
 }
 // 登录接口
-export const reqLogin = (data: loginForm) => {
+export const reqLogin = (data: loginForm) =>
     request.post<any, loginResponseData>(API.LOGIN_URL, data)
-}
+
 // 获取用户信息接口
-export const reqUserInfo = () => {
+export const reqUserInfo = () =>
     request.get<any, userResponseData>(API.USERINFO_URL)
-}
