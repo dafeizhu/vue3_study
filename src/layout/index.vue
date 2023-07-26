@@ -17,20 +17,31 @@
         </div>
 
         <!-- 顶部导航 -->
-        <div class="layout_tabbar">2</div>
+        <div class="layout_tabbar">
+            <Tabbar></Tabbar>
+        </div>
 
         <!-- 内容展示区域 -->
-        <div class="layout_main">3</div>
+        <div class="layout_main">
+            <Main></Main>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import Logo from './logo/index.vue'
 import Menu from './menu/index.vue'
+import Main from './main/index.vue'
+import Tabbar from './tabbar/index.vue'
 import useUserStore from '@/store/modules/user'
 import { useRoute } from 'vue-router'
 let userStore = useUserStore()
 let $route = useRoute()
+</script>
+<script lang="ts">
+export default {
+    name: 'Layout'
+}
 </script>
 
 <style scoped lang="scss">
