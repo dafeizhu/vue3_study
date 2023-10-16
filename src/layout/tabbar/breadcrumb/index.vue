@@ -1,6 +1,8 @@
 <template>
     <el-icon style="margin-right: 10px" @click="changeIcon">
-        <component :is="fold ? 'Fold' : 'Expand'"></component>
+        <component
+            :is="LayOutSettingStore.fold ? 'Expand' : 'Fold'"
+        ></component>
     </el-icon>
     <el-breadcrumb separator-icon="ArrowRight">
         <el-breadcrumb-item>权限管理</el-breadcrumb-item>
@@ -9,10 +11,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-let fold = ref(false)
+import useLayOutSettingStore from '@/store/modules/setting'
+let LayOutSettingStore = useLayOutSettingStore()
 const changeIcon = () => {
-    fold.value = !fold.value
+    LayOutSettingStore.fold = !LayOutSettingStore.fold
 }
 </script>
 <script lang="ts">
