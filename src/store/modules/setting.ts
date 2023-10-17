@@ -4,7 +4,8 @@ import { defineStore } from 'pinia'
 let useLayOutSettingStore = defineStore('SettingStore', {
     state: () => {
         return {
-            fold: false
+            fold: false,
+            refresh: false
         }
     }
 })

@@ -1,6 +1,16 @@
 <template>
-    <el-button size="small" icon="Refresh" circle></el-button>
-    <el-button size="small" icon="FullScreen" circle></el-button>
+    <el-button
+        size="small"
+        icon="Refresh"
+        circle
+        @click="updateRefresh"
+    ></el-button>
+    <el-button
+        size="small"
+        icon="FullScreen"
+        circle
+        @click="fullScreen"
+    ></el-button>
     <el-button size="small" icon="Setting" circle></el-button>
     <img
         src="../../../../public/logo.png"
@@ -21,7 +31,21 @@
     </el-dropdown>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import useLayOutSettingStore from '@/store/modules/setting'
+let layOutSettingStore = useLayOutSettingStore()
+const updateRefresh = () => {
+    layOutSettingStore.refresh = !layOutSettingStore.refresh
+}
+const fullScreen = () => {
+    let full = document.fullscreenElement
+    if (!full) {
+        document.documentElement.requestFullscreen()
+    } else {
+        document.exitFullscreen()
+    }
+}
+</script>
 <script lang="ts">
 export default {
     name: 'Setting'
