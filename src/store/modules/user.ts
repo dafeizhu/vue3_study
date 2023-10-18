@@ -5,7 +5,7 @@ import type { UserState } from './types/type'
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
 // 引入路由（常量路由）
 import { constantRoute } from '@/router/routes'
-let useUserStore = defineStore('User', {
+let useUserStore = defineStore('UserStore', {
     state: (): UserState => {
         return {
             token: GET_TOKEN(),
@@ -27,11 +27,13 @@ let useUserStore = defineStore('User', {
             }
         },
         async userInfo() {
-            let result = await reqUserInfo()
+            let result: any = await reqUserInfo()
             if (result.code == 200) {
                 this.userName = result.data.checkUser.username
                 this.avatar = result.data.checkUser.avatar
+                return 'ok'
             } else {
+                return Promise.reject(new Error(result.data.message))
             }
         },
         userLogout() {

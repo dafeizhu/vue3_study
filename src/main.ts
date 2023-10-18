@@ -10,6 +10,8 @@ import globalComponent from '@/components'
 import '@/styles/index.scss'
 //引入路由
 import router from './router'
+//引入路由鉴权文件
+import '@/router/permission'
 import pinia from './store'
 const app = createApp(App)
 app.use(ElementPlus, {
