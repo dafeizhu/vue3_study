@@ -25,7 +25,7 @@
         </span>
         <template #dropdown>
             <el-dropdown-menu>
-                <el-dropdown-item>退出登录</el-dropdown-item>
+                <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
         </template>
     </el-dropdown>
@@ -33,8 +33,10 @@
 
 <script setup lang="ts">
 import useLayOutSettingStore from '@/store/modules/setting'
-let layOutSettingStore = useLayOutSettingStore()
 import useUserStore from '@/store/modules/user'
+import { useRouter } from 'vue-router'
+let $router = useRouter()
+let layOutSettingStore = useLayOutSettingStore()
 let userStore = useUserStore()
 const updateRefresh = () => {
     layOutSettingStore.refresh = !layOutSettingStore.refresh
@@ -46,6 +48,15 @@ const fullScreen = () => {
     } else {
         document.exitFullscreen()
     }
+}
+//退出登录点击回调
+const logout = async () => {
+    //第一件事情:需要向服务器发请求[退出登录接口]******
+    //第二件事情:仓库当中关于用于相关的数据清空[token|username|avatar]
+    //第三件事情:跳转到登录页面
+    await userStore.userLogout()
+    //跳转到登录页面
+    $router.push({ path: '/login' })
 }
 </script>
 <script lang="ts">
