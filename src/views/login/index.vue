@@ -50,7 +50,7 @@ import useUserStore from '@/store/modules/user'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time'
 let useStore = useUserStore()
-let loginForm = reactive({ username: 'admin', password: '111111' })
+let loginForm = reactive({ username: 'admin', password: 'atguigu123' })
 let loading = ref(false)
 //获取路由器
 let $router = useRouter()
