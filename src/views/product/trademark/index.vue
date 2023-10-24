@@ -1,6 +1,11 @@
 <template>
     <el-card class="box-card">
-        <el-button type="primary" size="default" icon="Plus">
+        <el-button
+            type="primary"
+            size="default"
+            icon="Plus"
+            @click="addTrademark"
+        >
             添加品牌
         </el-button>
 
@@ -27,6 +32,7 @@
                         type="primary"
                         size="small"
                         icon="Edit"
+                        @click="updateTrademark(row)"
                     ></el-button>
                     <!-- <el-popconfirm :title="`您确定要删除${row.tmName}?`" width="250px" icon="Delete"
                             @confirm='removeTradeMark(row.id)'>
@@ -58,8 +64,51 @@
             :background="true"
             layout="prev, pager, next, jumper,->,sizes,total"
             :total="total"
+            @size-change="sizeChange"
+            @current-change="getHasTrademark"
         />
     </el-card>
+
+    <!-- 对话框组件:在添加品牌与修改已有品牌的业务时候使用结构 -->
+    <!-- 
+            v-model:属性用户控制对话框的显示与隐藏的 true显示 false隐藏
+             title:设置对话框左上角标题
+        -->
+    <el-dialog v-model="dialogFormVisible" title="添加品牌">
+        <el-form style="width: 80%" ref="formRef">
+            <el-form-item label="品牌名称" label-width="100px" prop="tmName">
+                <el-input placeholder="请您输入品牌名称"></el-input>
+            </el-form-item>
+            <el-form-item label="品牌LOGO" label-width="100px" prop="logoUrl">
+                <!-- upload组件属性:action图片上传路径书写/api,代理服务器不发送这次post请求  -->
+                <el-upload
+                    class="avatar-uploader"
+                    action="/api/admin/product/fileUpload"
+                    :show-file-list="false"
+                >
+                    <!-- :on-success="handleAvatarSuccess"
+                    :before-upload="beforeAvatarUpload" -->
+                    <!-- <img
+                        v-if="trademarkParams.logoUrl"
+                        :src="trademarkParams.logoUrl"
+                        class="avatar"
+                    /> -->
+                    <el-icon class="avatar-uploader-icon">
+                        <Plus />
+                    </el-icon>
+                </el-upload>
+            </el-form-item>
+        </el-form>
+        <!-- 具名插槽:footer -->
+        <template #footer>
+            <el-button type="primary" size="default" @click="cancel">
+                取消
+            </el-button>
+            <el-button type="primary" size="default" @click="confirm">
+                确定
+            </el-button>
+        </template>
+    </el-dialog>
 </template>
 
 <script setup lang="ts">
@@ -73,10 +122,13 @@ let pageNo = ref<number>(1)
 let limit = ref<number>(3)
 let total = ref<number>(0)
 let trademarkArr = ref<Records>([])
+//控制对话框显示与隐藏
+let dialogFormVisible = ref<boolean>(false)
 onMounted(() => {
     getHasTrademark()
 })
-const getHasTrademark = async () => {
+const getHasTrademark = async (pager = 1) => {
+    pageNo.value = pager
     let result: TradeMarkResponseData = await reqHasTrademark(
         pageNo.value,
         limit.value
@@ -84,6 +136,58 @@ const getHasTrademark = async () => {
     total.value = result.data.total
     trademarkArr.value = result.data.records
 }
+//当下拉菜单发生变化的时候触发次方法
+//这个自定义事件,分页器组件会将下拉菜单选中数据返回
+const sizeChange = () => {
+    //当前每一页的数据量发生变化的时候，当前页码归1
+    getHasTrademark()
+}
+//添加品牌按钮的回调
+const addTrademark = () => {
+    //对话框显示
+    dialogFormVisible.value = true
+}
+const updateTrademark = () => {
+    //对话框显示
+    dialogFormVisible.value = true
+}
+const cancel = () => {
+    //对话框隐藏
+    dialogFormVisible.value = false
+}
+const confirm = () => {
+    //对话框隐藏
+    dialogFormVisible.value = false
+}
 </script>
 
-<style scoped></style>
+<style scoped>
+.avatar-uploader .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+}
+</style>
+
+<style>
+.avatar-uploader .el-upload {
+    border: 1px dashed var(--el-border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: var(--el-transition-duration-fast);
+}
+
+.avatar-uploader .el-upload:hover {
+    border-color: var(--el-color-primary);
+}
+
+.el-icon.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    text-align: center;
+}
+</style>
